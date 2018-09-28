@@ -1,0 +1,32 @@
+language: node_js
+
+env:
+  global:
+      - GH_PAGES_REPO: wink0316/wink0316.github.io
+
+node_js:
+  - "node"
+
+before_install:
+  - rm -rf node_modules/
+
+install:
+  - npm install
+
+before_script:
+  - npm install gulp
+
+script:
+  - gulp
+
+deploy:
+  name: wink0316
+  email: liuhang0316@163.com
+  provider: pages
+  skip_cleanup: true
+  github_token: $GH_TOKEN # Set in travis-ci.org dashboard
+  target_branch: master
+  local_dir: dist
+  repo: $GH_PAGES_REPO
+  on:
+    branch: master
